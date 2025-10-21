@@ -1,12 +1,8 @@
-# app.py
 import streamlit as st
 import pandas as pd
 import pickle
 from sklearn.preprocessing import LabelEncoder
 
-# -----------------------------
-# Load pre-trained objects
-# -----------------------------
 with open("scaler.pkl", "rb") as f:
     scaler = pickle.load(f)
 
@@ -19,9 +15,6 @@ with open("dbscan_model.pkl", "rb") as f:
 st.title("Patient Clustering App")
 st.write("Enter patient details to predict cluster assignment using KMeans and DBSCAN.")
 
-# -----------------------------
-# Input fields for all features
-# -----------------------------
 def user_input_features():
     age = st.number_input("Age", min_value=0, max_value=120, value=50)
     gender = st.selectbox("Gender", ["Male", "Female"])
@@ -59,13 +52,7 @@ def user_input_features():
     return pd.DataFrame([data])
 
 df_input = user_input_features()
-
-# -----------------------------
-# Predict button
-# -----------------------------
 if st.button("Predict Clusters"):
-
-    # Encode categorical features
     categorical_cols = ['gender', 'chest_pain_type', 'exercise_angina', 
                         'hypertension','residence_type','smoking_status']
 
@@ -73,19 +60,15 @@ if st.button("Predict Clusters"):
         le = LabelEncoder()
         df_input[col] = le.fit_transform(df_input[col])
 
-    # Ensure columns order matches training
     features = ['age','gender','chest_pain_type','blood_pressure','cholesterol',
                 'max_heart_rate','exercise_angina','plasma_glucose','skin_thickness',
                 'insulin','bmi','diabetes_pedigree','hypertension',
                 'residence_type','smoking_status']
 
     X_scaled = scaler.transform(df_input[features])
-
-    # Predict clusters
     kmeans_cluster = kmeans.predict(X_scaled)[0]
     dbscan_cluster = dbscan.fit_predict(X_scaled)[0]
 
-    # Display results
     st.success(f"KMeans Cluster: {kmeans_cluster}")
     if dbscan_cluster == -1:
         st.warning("DBSCAN Cluster: Noise")
