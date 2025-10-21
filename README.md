@@ -4,6 +4,7 @@
 This project aims to cluster patients based on their clinical and demographic features using unsupervised machine learning algorithms. The goal is to identify meaningful patient groups that can help in understanding patient characteristics, potential risk factors, and medical intervention needs. The app allows users to input patient details and predicts cluster assignment using **KMeans** and **DBSCAN**.
 
 **Dataset link**:https://www.kaggle.com/datasets/arjunnsharma/patient-dataset-for-clustering-raw-data
+
 **Streamlit link**:https://kanika-07cs-task17-16-10-25--app-dfkvvm.streamlit.app/
 
 ## Dataset Description
