@@ -5,8 +5,6 @@ This project aims to cluster patients based on their clinical and demographic fe
 
 **Dataset link**:https://www.kaggle.com/datasets/arjunnsharma/patient-dataset-for-clustering-raw-data
 
-**Streamlit link**:https://kanika-07cs-task17-16-10-25--app-dfkvvm.streamlit.app/
-
 ## Dataset Description
 The dataset contains patient information with 16 features:
 
